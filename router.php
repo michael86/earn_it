@@ -6,8 +6,8 @@ function routeRequest(string $uri): void
 
     if (array_key_exists($uri, $ROUTES)) {
         $viewName = $ROUTES[$uri];
-        loadView($viewName);
+        loadPage($viewName);
     } else {
-        loadView('404');
+        loadPage('404');
     }
 }

@@ -5,13 +5,13 @@ function basePath(): string
     return __DIR__ . '/public/';
 };
 
-function loadView(string $viewName): void
+function loadPage(string $viewPage): void
 {
-    $viewPath = basePath() . 'views/' . $viewName . '.php';
-    if (file_exists($viewPath)) {
-        require_once $viewPath;
+    $pagePath = basePath() . 'views/pages/' . $viewPage . '.php';
+    if (file_exists($pagePath)) {
+        require_once $pagePath;
     } else {
-        require_once basePath() . 'views/404.php';
+        require_once basePath() . 'views/pages/404.php';
     }
 }
 
