@@ -1,0 +1,19 @@
+{
+  "name": "earn_it",
+  "version": "1.0.0",
+  "description": "A simple web application for adults and children to track assigned chores and earned rewards along with prizes to redeem.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michael86/earn_it.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michael86/earn_it/issues"
+  },
+  "homepage": "https://github.com/michael86/earn_it#readme"
+}
