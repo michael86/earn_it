@@ -7,8 +7,11 @@ function inspect($var): void
     echo '</pre>';
 }
 
-function inspectAndDie($var): void
+function inspectAndDie(...$var): void
 {
-    inspect($var);
+    foreach ($var as $var) {
+
+        inspect($var);
+    }
     die();
 }

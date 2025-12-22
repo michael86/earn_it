@@ -68,7 +68,7 @@ loadPartial('nav');
 
             <p class="mt-6 text-center text-sm text-gray-600">
                 No account yet?
-                <a href="/register" class="font-semibold text-blue-600 hover:text-blue-700">
+                <a href="/auth/register" class="font-semibold text-blue-600 hover:text-blue-700">
                     Create one
                 </a>
             </p>

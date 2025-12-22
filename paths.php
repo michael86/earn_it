@@ -27,10 +27,18 @@ function  loadPartial(string $partialName): void
 
 function loadController(string $controllerName): void
 {
+
     $controllerPath = basePath() . 'controllers/' . $controllerName . '.php';
+
     if (file_exists($controllerPath)) {
         require_once $controllerPath;
     } else {
-        require_once basePath() . 'controllers/404.php';
+
+        if (DEBUG_MODE) {
+
+            inspectAndDie($controllerPath, $controllerName);
+        }
+
+        require_once basePath() . 'controllers/errors/404.php';
     }
 }

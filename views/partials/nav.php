@@ -11,8 +11,8 @@
             </a>
 
             <nav class="space-x-4 text-sm">
-                <a href="/login" class="text-gray-600 hover:text-gray-900">Login</a>
-                <a href="/register" class="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
+                <a href="/auth/login" class="text-gray-600 hover:text-gray-900">Login</a>
+                <a href="/auth/register" class="rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
                     Register
                 </a>
             </nav>

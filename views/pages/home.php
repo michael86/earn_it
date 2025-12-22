@@ -18,12 +18,12 @@ loadPartial('nav');
             </p>
 
             <div class="mt-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
-                <a href="/register?type=parent"
+                <a href="/auth/register?type=parent"
                     class="rounded-lg bg-white px-6 py-3 font-semibold text-blue-600 hover:bg-gray-100">
                     I am a parent
                 </a>
 
-                <a href="/register?type=child"
+                <a href="/auth/register?type=child"
                     class="rounded-lg border border-white px-6 py-3 font-semibold hover:bg-blue-700">
                     I am a child
                 </a>

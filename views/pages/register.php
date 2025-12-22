@@ -20,7 +20,7 @@ loadPartial('nav');
 
             <!-- Role picker -->
             <div class="mt-6 grid gap-3 sm:grid-cols-2">
-                <a href="/register?type=parent"
+                <a href="/auth/register?type=parent"
                     class="rounded-lg border px-4 py-3 text-left hover:bg-gray-50 <?= $type === 'parent' ? 'border-blue-600 ring-1 ring-blue-600' : 'border-gray-200' ?>">
                     <div class="font-semibold">Parent</div>
                     <div class="mt-1 text-sm text-gray-600">
@@ -28,7 +28,7 @@ loadPartial('nav');
                     </div>
                 </a>
 
-                <a href="/register?type=child"
+                <a href="/auth/register?type=child"
                     class="rounded-lg border px-4 py-3 text-left hover:bg-gray-50 <?= $type === 'child' ? 'border-blue-600 ring-1 ring-blue-600' : 'border-gray-200' ?>">
                     <div class="font-semibold">Child</div>
                     <div class="mt-1 text-sm text-gray-600">
