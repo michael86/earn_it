@@ -2,7 +2,7 @@
 
 function basePath(): string
 {
-    return __DIR__ . '/public/';
+    return __DIR__ . '/';
 };
 
 function loadPage(string $viewPage): void
@@ -22,5 +22,15 @@ function  loadPartial(string $partialName): void
         require_once $partialPath;
     } else {
         require_once basePath() . 'views/partials/404.php';
+    }
+}
+
+function loadController(string $controllerName): void
+{
+    $controllerPath = basePath() . 'controllers/' . $controllerName . '.php';
+    if (file_exists($controllerPath)) {
+        require_once $controllerPath;
+    } else {
+        require_once basePath() . 'controllers/404.php';
     }
 }

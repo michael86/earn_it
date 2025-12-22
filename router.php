@@ -5,9 +5,9 @@ function routeRequest(string $uri): void
     global $ROUTES;
 
     if (array_key_exists($uri, $ROUTES)) {
-        $viewName = $ROUTES[$uri];
-        loadPage($viewName);
+        $controllerName = $ROUTES[$uri];
+        loadController($controllerName);
     } else {
-        loadPage('404');
+        loadController('404');
     }
 }
