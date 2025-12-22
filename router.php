@@ -8,6 +8,6 @@ function routeRequest(string $uri): void
         $controllerName = $ROUTES[$uri];
         loadController($controllerName);
     } else {
-        loadController('404');
+        loadController('errors/404');
     }
 }

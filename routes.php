@@ -4,6 +4,6 @@ $ROUTES = [
     '/' => 'home',
     '/about' => 'about',
     '/contact' => 'contact',
-    '/login' => 'login',
-    '/register' => 'register',
+    '/login' => 'auth/login',
+    '/register' => 'auth/register',
 ];
