@@ -1,3 +1,3 @@
 <?php
 
-loadPage('404');
+loadPage('errors/404');

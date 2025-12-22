@@ -14,6 +14,13 @@ class Router
         ];
     }
 
+    private function error(int $errorCode = 404): void
+    {
+        http_response_code($errorCode);
+        loadController("errors/{$errorCode}");
+        exit;
+    }
+
     /**
      * Register a GET route
      * 
@@ -83,12 +90,11 @@ class Router
             }
         }
 
-        if (DEBUG_MODE) {
-            inspectAndDie($uri, $method, $route['controller']);
-        };
+        // if (DEBUG_MODE) {
+        //     inspectAndDie($uri, $method, $route['controller']);
+        // };
 
-        http_response_code(404);
-        loadController('errors/404');
+        $this->error();
         exit;
     }
 }

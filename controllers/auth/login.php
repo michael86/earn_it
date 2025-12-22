@@ -1,3 +1,3 @@
 <?php
 
-loadPage('login');
+loadPage('auth/login');

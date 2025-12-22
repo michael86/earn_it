@@ -1,3 +1,3 @@
 <?php
 
-loadPage('register');
+loadPage('auth/register');
