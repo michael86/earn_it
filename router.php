@@ -85,15 +85,16 @@ class Router
 
             if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
 
+                
                 loadController($route['controller']);
                 return;
             }
         }
-
-        // if (DEBUG_MODE) {
-        //     inspectAndDie($uri, $method, $route['controller']);
-        // };
-
+        
+        if(DEBUG_MODE) {
+            inspectAndDie('uri: ' . $uri, 'method: ' . $method);
+        }
+        
         $this->error();
         exit;
     }
