@@ -4,11 +4,12 @@ $type = in_array($type, ['parent', 'child'], true) ? $type : '';
 
 loadPartial('head');
 loadPartial('nav');
+
+$method = $_SERVER['REQUEST_METHOD'];
 ?>
 
 <main class="py-16">
     <div class="mx-auto max-w-2xl px-4">
-
         <div class="rounded-xl bg-white p-8 shadow-sm">
             <h1 class="text-2xl font-bold text-gray-900">
                 Create an account
@@ -18,28 +19,67 @@ loadPartial('nav');
                 Choose your role and get started. Each family has their own private space.
             </p>
 
-            <!-- Role picker -->
-            <div class="mt-6 grid gap-3 sm:grid-cols-2">
-                <a href="/auth/register?type=parent"
-                    class="rounded-lg border px-4 py-3 text-left hover:bg-gray-50 <?= $type === 'parent' ? 'border-blue-600 ring-1 ring-blue-600' : 'border-gray-200' ?>">
-                    <div class="font-semibold">Parent</div>
-                    <div class="mt-1 text-sm text-gray-600">
-                        Assign tasks and approve completions.
-                    </div>
-                </a>
+            <form class="mt-8 space-y-5" method="post">
+                <!-- Role picker -->
+                <div class="mt-6">
+                    <p class="text-sm font-medium text-gray-700">
+                        Account type
+                    </p>
 
-                <a href="/auth/register?type=child"
-                    class="rounded-lg border px-4 py-3 text-left hover:bg-gray-50 <?= $type === 'child' ? 'border-blue-600 ring-1 ring-blue-600' : 'border-gray-200' ?>">
-                    <div class="font-semibold">Child</div>
-                    <div class="mt-1 text-sm text-gray-600">
-                        Complete tasks and earn points.
-                    </div>
-                </a>
-            </div>
+                    <div id="parent-radios" class="mt-3 grid gap-3 sm:grid-cols-2">
+                        <label class="relative block cursor-pointer">
+                            <input
+                                type="radio"
+                                name="type"
+                                value="parent"
+                                class="peer sr-only"
+                                <?= $type === 'parent' ? 'checked' : '' ?>
+                                required
+                            >
+                            <div class="rounded-lg border px-4 py-3 transition
+                                border-gray-200 hover:bg-gray-50
+                                peer-checked:border-blue-600 peer-checked:ring-1 peer-checked:ring-blue-600 peer-checked:bg-blue-50">
+                                <div class="flex items-center justify-between">
+                                    <div class="font-semibold text-gray-900">
+                                        Parent
+                                    </div>
+                                    <span class="hidden text-xs font-semibold text-blue-700 peer-checked:inline">
+                                        Selected
+                                    </span>
+                                </div>
+                                <div class="mt-1 text-sm text-gray-600">
+                                    Assign tasks and approve completions.
+                                </div>
+                            </div>
+                        </label>
 
-            <!-- Form -->
-            <form class="mt-8 space-y-5" method="post" action="/register">
-                <input type="hidden" name="type" value="<?= htmlspecialchars($type) ?>">
+                        <label class="relative block cursor-pointer">
+                            <input
+                                type="radio"
+                                name="type"
+                                value="child"
+                                class="peer sr-only"
+                                <?= $type === 'child' ? 'checked' : '' ?>
+                                required
+                            >
+                            <div class="rounded-lg border px-4 py-3 transition
+                                border-gray-200 hover:bg-gray-50
+                                peer-checked:border-blue-600 peer-checked:ring-1 peer-checked:ring-blue-600 peer-checked:bg-blue-50">
+                                <div class="flex items-center justify-between">
+                                    <div class="font-semibold text-gray-900">
+                                        Child
+                                    </div>
+                                    <span class="hidden text-xs font-semibold text-blue-700 peer-checked:inline">
+                                        Selected
+                                    </span>
+                                </div>
+                                <div class="mt-1 text-sm text-gray-600">
+                                    Complete tasks and earn points.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
 
                 <div class="grid gap-5 sm:grid-cols-2">
                     <div>
@@ -52,7 +92,8 @@ loadPartial('nav');
                             autocomplete="given-name"
                             required
                             class="mt-1 w-full rounded-md border border-gray-300 px-4 py-2 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
-                            placeholder="First name">
+                            placeholder="First name"
+                        >
                     </div>
 
                     <div>
@@ -65,7 +106,8 @@ loadPartial('nav');
                             autocomplete="family-name"
                             required
                             class="mt-1 w-full rounded-md border border-gray-300 px-4 py-2 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
-                            placeholder="Last name">
+                            placeholder="Last name"
+                        >
                     </div>
                 </div>
 
@@ -79,7 +121,8 @@ loadPartial('nav');
                         autocomplete="email"
                         required
                         class="mt-1 w-full rounded-md border border-gray-300 px-4 py-2 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
-                        placeholder="you@example.com">
+                        placeholder="you@example.com"
+                    >
                 </div>
 
                 <div class="grid gap-5 sm:grid-cols-2">
@@ -93,7 +136,8 @@ loadPartial('nav');
                             autocomplete="new-password"
                             required
                             class="mt-1 w-full rounded-md border border-gray-300 px-4 py-2 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
-                            placeholder="Create a password">
+                            placeholder="Create a password"
+                        >
                         <p class="mt-2 text-xs text-gray-500">
                             Use at least 8 characters.
                         </p>
@@ -109,7 +153,8 @@ loadPartial('nav');
                             autocomplete="new-password"
                             required
                             class="mt-1 w-full rounded-md border border-gray-300 px-4 py-2 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
-                            placeholder="Repeat password">
+                            placeholder="Repeat password"
+                        >
                     </div>
                 </div>
 
@@ -120,20 +165,23 @@ loadPartial('nav');
                             name="terms"
                             type="checkbox"
                             required
-                            class="mt-1 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600">
+                            class="mt-1 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600"
+                        >
                         <label for="terms" class="text-sm text-gray-600">
                             I agree to the terms and privacy policy.
                         </label>
                     </div>
 
                     <p class="text-xs text-gray-500">
-                        Parents and children accounts are kept within a single family group. No other family can view your information.
+                        Parents and children accounts are kept within a single family group.
+                        No other family can view your information.
                     </p>
                 </div>
 
                 <button
                     type="submit"
-                    class="w-full rounded-md bg-blue-600 px-4 py-2.5 font-semibold text-white hover:bg-blue-700">
+                    class="w-full rounded-md bg-blue-600 px-4 py-2.5 font-semibold text-white hover:bg-blue-700"
+                >
                     Create account
                 </button>
             </form>

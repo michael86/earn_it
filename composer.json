@@ -1,0 +1,16 @@
+{
+  "name": "michael86/earn_it",
+  "description": "A vanilla php app for parents and children to track chores and earn rewards",
+  "authors": [
+    {
+      "name": "Michael Hodgson",
+      "email": "michael8t6@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Framework\\": "Framework/",
+      "App\\": "App/"
+    }
+  }
+}

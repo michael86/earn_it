@@ -7,7 +7,7 @@ function basePath(string $path = ''): string
 
 function loadPage(string $viewPage): void
 {
-    $pagePath = basePath("views/pages/{$viewPage}.php");
+    $pagePath = basePath("App/views/pages/{$viewPage}.php");
 
     if (file_exists($pagePath)) {
         require_once $pagePath;
@@ -21,7 +21,7 @@ function loadPage(string $viewPage): void
 
 function loadPartial(string $partialName): void
 {
-    $partialPath = basePath("views/partials/{$partialName}.php");
+    $partialPath = basePath("App/views/partials/{$partialName}.php");
 
     if (file_exists($partialPath)) {
         require_once $partialPath;
@@ -35,7 +35,7 @@ function loadPartial(string $partialName): void
 
 function loadController(string $controllerName): void
 {
-    $controllerPath = basePath("controllers/{$controllerName}.php");
+    $controllerPath = basePath("App/controllers/{$controllerName}.php");
 
     if (file_exists($controllerPath)) {
         require_once $controllerPath;
@@ -49,7 +49,7 @@ function loadController(string $controllerName): void
 
 function loadConfig(string $file): void
 {
-    $configPath = basePath("config/{$file}.php");
+    $configPath = basePath("Config/{$file}.php");
 
     if (file_exists($configPath)) {
         
@@ -59,5 +59,20 @@ function loadConfig(string $file): void
 
     if (defined('DEBUG_MODE') && DEBUG_MODE) {
         inspectAndDie($file, $configPath);
+    }
+}
+
+function loadFramework(string $file): void
+{
+    $frameworkPath = basePath("Framework/{$file}.php");
+
+    if (file_exists($frameworkPath)) {
+        
+        require_once $frameworkPath;
+        return;
+    }
+
+    if (defined('DEBUG_MODE') && DEBUG_MODE) {
+        inspectAndDie($file, $frameworkPath);
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
-$router->get('/', 'home');
-$router->get('/about', 'about');
-$router->get('/contact', 'contact');
-$router->get('/auth/login', 'auth/login');
-$router->get('/auth/register', 'auth/register');
+$router->get('/', 'Home@index');
+$router->get('/about', 'About@index');
+$router->get('/contact', 'Contact@index');
+$router->get('/auth/login', 'Auth\\Login@index');
+$router->get('/auth/register', 'Auth\\Register@index');

@@ -1,16 +1,17 @@
 <?php
+require_once __DIR__ . '/../vendor/autoload.php';
 
 require_once '../config/enviroment.php';
 require_once '../config/database.php';
 
+use Framework\Database;
+use Framework\Router;
+
 if (DEBUG_MODE) {
     require_once '../debug.php';
 }
-
 require_once '../paths.php';
 
-require_once basePath('Database.php');
-require_once basePath('router.php');
 loadConfig('database');
 
 $db = new Database($DB_CONFIG);
