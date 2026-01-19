@@ -2,10 +2,35 @@
 
 namespace App\Controllers\Auth;
 
-class Register {
+use Framework\Middleware\Auth\Register as RegisterValidator;
 
-    public function index() {
-        loadPage('auth/register');
+class Register
+{
+    public function index(): void
+    {
+        loadPage('auth/register', [
+            'errors' => [],
+            'old' => [],
+        ]);
     }
-    
+
+    public function create(): void
+    {
+        $data = $_POST;
+        $errors = RegisterValidator::validate($data);
+        
+        if(count($errors)) {
+
+            loadPage('auth/register', [
+                'errors' => $errors,
+                'old' => $data,
+            ]);
+            return;
+        }
+
+
+       
+
+        // continue with user creation
+    }
 }

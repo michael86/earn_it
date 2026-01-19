@@ -2,6 +2,19 @@
 $type = $_GET['type'] ?? '';
 $type = in_array($type, ['parent', 'child'], true) ? $type : '';
 
+$errors = $errors ?? [];
+$old = $old ?? [];
+
+function old(array $old, string $key): string
+{
+    return htmlspecialchars($old[$key] ?? '', ENT_QUOTES, 'UTF-8');
+}
+
+function checked(array $old, string $key): string
+{
+    return !empty($old[$key]) ? 'checked' : '';
+}
+
 loadPartial('head');
 loadPartial('nav');
 
@@ -19,8 +32,17 @@ $method = $_SERVER['REQUEST_METHOD'];
                 Choose your role and get started. Each family has their own private space.
             </p>
 
+            <?php if (!empty($errors)): ?>
+                <div class="mb-6 rounded-lg border border-red-200 bg-red-50 p-4">
+                    <ul class="list-disc space-y-1 pl-5 text-sm text-red-700">
+                        <?php foreach ($errors as $error): ?>
+                            <li><?= htmlspecialchars($error, ENT_QUOTES, 'UTF-8') ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
+
             <form class="mt-8 space-y-5" method="post">
-                <!-- Role picker -->
                 <div class="mt-6">
                     <p class="text-sm font-medium text-gray-700">
                         Account type
@@ -33,7 +55,7 @@ $method = $_SERVER['REQUEST_METHOD'];
                                 name="type"
                                 value="parent"
                                 class="peer sr-only"
-                                <?= $type === 'parent' ? 'checked' : '' ?>
+                                <?= (($old['type'] ?? $type) === 'parent') ? 'checked' : '' ?>
                                 required
                             >
                             <div class="rounded-lg border px-4 py-3 transition
@@ -59,7 +81,7 @@ $method = $_SERVER['REQUEST_METHOD'];
                                 name="type"
                                 value="child"
                                 class="peer sr-only"
-                                <?= $type === 'child' ? 'checked' : '' ?>
+                                <?= (($old['type'] ?? $type) === 'child') ? 'checked' : '' ?>
                                 required
                             >
                             <div class="rounded-lg border px-4 py-3 transition
@@ -88,11 +110,12 @@ $method = $_SERVER['REQUEST_METHOD'];
                         </label>
                         <input
                             type="text"
-                            name="first_name"
+                            name="firstname"
                             autocomplete="given-name"
                             required
                             class="mt-1 w-full rounded-md border border-gray-300 px-4 py-2 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
                             placeholder="First name"
+                            value="<?= old($old, 'firstname') ?>"
                         >
                     </div>
 
@@ -102,11 +125,12 @@ $method = $_SERVER['REQUEST_METHOD'];
                         </label>
                         <input
                             type="text"
-                            name="last_name"
+                            name="lastname"
                             autocomplete="family-name"
                             required
                             class="mt-1 w-full rounded-md border border-gray-300 px-4 py-2 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
                             placeholder="Last name"
+                            value="<?= old($old, 'lastname') ?>"
                         >
                     </div>
                 </div>
@@ -122,6 +146,7 @@ $method = $_SERVER['REQUEST_METHOD'];
                         required
                         class="mt-1 w-full rounded-md border border-gray-300 px-4 py-2 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
                         placeholder="you@example.com"
+                        value="<?= old($old, 'email') ?>"
                     >
                 </div>
 
@@ -149,7 +174,7 @@ $method = $_SERVER['REQUEST_METHOD'];
                         </label>
                         <input
                             type="password"
-                            name="password_confirm"
+                            name="password-confirm"
                             autocomplete="new-password"
                             required
                             class="mt-1 w-full rounded-md border border-gray-300 px-4 py-2 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600"
@@ -166,6 +191,7 @@ $method = $_SERVER['REQUEST_METHOD'];
                             type="checkbox"
                             required
                             class="mt-1 h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600"
+                            <?= checked($old, 'terms') ?>
                         >
                         <label for="terms" class="text-sm text-gray-600">
                             I agree to the terms and privacy policy.

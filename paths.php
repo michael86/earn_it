@@ -5,11 +5,12 @@ function basePath(string $path = ''): string
     return BASE_PATH . ltrim($path, DIRECTORY_SEPARATOR);
 }
 
-function loadPage(string $viewPage): void
+function loadPage(string $viewPage, array $data = []): void
 {
     $pagePath = basePath("App/views/pages/{$viewPage}.php");
 
     if (file_exists($pagePath)) {
+        extract($data);
         require_once $pagePath;
         return;
     }
